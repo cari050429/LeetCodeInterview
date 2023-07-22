@@ -1,0 +1,10 @@
+class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        dict={}
+        for x in paths: 
+            dict[x[0]]='True'
+        for x in paths: 
+            if x[1] in dict:
+                continue
+            else:
+                return x[1]
