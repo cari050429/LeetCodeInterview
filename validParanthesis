@@ -1,0 +1,32 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        myStack=[]
+        if len(s)%2 == 1:
+            return False
+        for x in s: 
+            if x=='(' or x=="{" or x=="[":
+                myStack.append(x)
+            elif x==')':
+                
+                if len(myStack)==0 or myStack[-1]!='(':
+                    return False
+                elif myStack:
+                    myStack.pop()
+            elif x=='}':
+                if len(myStack)==0 or myStack[-1]!='{':
+                    return False
+                elif myStack:
+                    myStack.pop()
+            elif x==']':
+                if len(myStack)==0 or myStack[-1]!='[':
+                    return False
+                elif myStack:
+                    myStack.pop()
+        if myStack: 
+            return False
+        
+        return True
+
+
+    
+        
