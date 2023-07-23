@@ -1,0 +1,67 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        curr_1=l1
+        curr_2=l2
+        temp1=[]
+        temp2=[]
+        while curr_1:
+            temp1.append(curr_1.val)
+            curr_1=curr_1.next
+        while curr_2:
+            temp2.append(curr_2.val)
+            curr_2=curr_2.next
+        stack1=[]
+        stack2=[]
+        while len(temp1)!=0:
+            stack1.append(temp1.pop())
+        while len(temp2)!=0:
+            stack2.append(temp2.pop())
+        l3=ListNode()
+        head=l3
+        stack1_len=len(stack1)
+        stack2_len=len(stack2)
+        longest=max(stack1_len, stack2_len)
+        remainder=0
+        for x in range(longest):
+            if len(stack1)==0:
+                first_total=stack2.pop()+remainder
+                if first_total>=10:
+                    final_total=first_total-10
+                    remainder=1
+                else: 
+                    final_total=first_total
+                    remainder=0
+            elif len(stack2)==0: 
+                first_total=stack1.pop()+remainder
+                if first_total>=10:
+                    final_total=first_total-10
+                    remainder=1
+                else: 
+                    final_total=first_total
+                    remainder=0
+            else:
+                first_total=stack1.pop()+stack2.pop()+remainder
+                if first_total>=10:
+                    final_total=first_total-10
+                    remainder=1
+                else: 
+                    final_total=first_total
+                    remainder=0
+
+            l3.next=ListNode(final_total)
+            print(l3.val)
+            l3=l3.next
+            
+        if remainder!=0:
+            l3.next=ListNode(remainder)
+            l3=l3.next
+        return head.next
+                
+
+            
+
