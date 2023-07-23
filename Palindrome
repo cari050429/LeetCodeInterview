@@ -1,0 +1,14 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        string=s.strip()
+        string=string.lower()
+        string=string.replace(" ","")
+        filtered_string = ''.join([x for x in string if x.isalnum()]).lower()
+        print(filtered_string)
+        length=len(filtered_string)
+        for x in range(length//2):
+            print(filtered_string[x])
+            print(filtered_string[-1-x])
+            if filtered_string[x]!=filtered_string[-1-x]:
+                return False
+        return True
